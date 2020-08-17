@@ -427,13 +427,19 @@
         width: 1rem;
 
         //for older browser
-        // background-image: url(../img/chevron-thin-right.svg);
-        // background-size: cover;
+        background-image: url(../img/chevron-thin-right.svg);
+        background-size: cover;
 
         //for newer browser -masks
-        background-color: var(--color-primary);
-        mask-image: url(../img/chevron-thin-right.svg);
-        mask-size: cover;
+        @supports ( (-webkit-mask-image:url()) or (mask-image:url())) {
+            background-color: var(--color-primary);
+            mask-image: url(../img/chevron-thin-right.svg);
+            mask-size: cover;
+            background-image: none; //without this even if our broswer support mask still background image will take precedence and our svg icon will look black in color in modern browsers
+        }
+
+        
+       
 
     }
 }
